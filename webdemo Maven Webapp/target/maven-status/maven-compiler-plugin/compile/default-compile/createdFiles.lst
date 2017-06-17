@@ -1,0 +1,17 @@
+com\tmall\model\Category.class
+com\tmall\model\Order.class
+com\tmall\model\User.class
+com\tmall\model\ProductImage.class
+com\tmall\model\Review.class
+com\tmall\dao\UserDao.class
+com\tmall\service\UserService.class
+com\tmall\dao\Impl\UserDaoImpl.class
+com\tmall\action\UserRegisterAction.class
+com\tmall\model\OrderItem.class
+com\tmall\vo\UserRegisterInfo.class
+com\tmall\dao\Impl\CategoryDaoImpl.class
+com\tmall\service\impl\UserServiceImpl.class
+com\tmall\model\Property.class
+com\tmall\dao\util\daoUtil.class
+com\tmall\model\PropertyValue.class
+com\tmall\model\Product.class
