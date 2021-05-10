@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+	<constant name="struts.objectFactory" value="spring"/>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<package name="registeration" extends="json-default" namespace="/">
+	<interceptors>
+		<interceptor name="loginInterceptor" class="com.tmall.util.intercepror.vaildateLogin"/>
+		<interceptor name="cartTotalItemNumberInterceptor" class="com.tmall.util.intercepror.cartTotalItemNumberInterceptor"/>
+		<interceptor-stack name="loginInterceptor">
+			<interceptor-ref name="loginInterceptor"/>
+			<interceptor-ref name="defaultStack"/>
+		</interceptor-stack>
+		<interceptor-stack name="cartTotalItemNumberStack">
+			<interceptor-ref name="cartTotalItemNumberInterceptor"/>
+			<interceptor-ref name="defaultStack"/>
+		</interceptor-stack>
+	</interceptors>
+	<default-interceptor-ref name="cartTotalItemNumberStack"></default-interceptor-ref>
+	<!--  -->
+		<global-results>
+		<result name="error">/FountModule/Error.jsp</result>
+		<result name="index">/index.jsp</result>
+		<result name="login">/FountModule/UserLog.jsp</result>
+		</global-results>
+		<global-allowed-methods>orderpost,getUserState,registerUser,logout,modalLogin,checkLog,changeOrderItem,deleteOrder,deleteOrderItem,addCart</global-allowed-methods>
+		<action  name="userRegister" class="userRegister">
+			<result name="userRegister.jsp">/FountModule/UserRegister.jsp</result>
+			<result name="exist" type="json"><param name="root">state</param></result>
+		</action>
+		<action name="index" class="indexAction">
+		</action>
+		<action name="login" class="login">
+			<result name="success" type="chain">index</result>
+			<result name="logout" type="redirectAction">index</result>
+		</action>
+		<action name="foreproduct" class="product">
+			<result name="product">/FountModule/product.jsp</result>
+			<result name="success" type="json"><param name="root">validate</param></result>
+			<result name="fail" type="json"><param name="root">fail</param></result>
+		</action>
+		<action name="forecategory" class="categoryAction">
+			<result name="category">/FountModule/category.jsp</result>
+		</action>
+		<action name="foresearch" class="search">
+			<result name="search">/FountModule/search.jsp</result>
+		</action>
+		<action name="forebuyone" class="product" method="buy">
+			<result name="forebuy" type="chain">forebuy</result>
+			<interceptor-ref name="loginInterceptor"/>
+		</action>
+		
+		<action name="forecart" class="shoppingcartAction">
+		<result name="success">/FountModule/shoppingcart.jsp</result>
+		<interceptor-ref name="loginInterceptor"/>
+		</action>
+		
+		<action name="forebuy" class="buyAction">
+			<result name="buyPage">/FountModule/clearing.jsp</result>
+			<interceptor-ref name="loginInterceptor"/>
+		</action>
+		<action name="forealipay" class="orderAction">
+			<result name="forealipay">/FountModule/pay.jsp</result>
+		</action>
+		<action name="foreconfirmPay" class="orderAction" method="confirmPay">
+			<result name="confirmPay">/FountModule/confirmPay.jsp</result>
+		</action>
+		<action name="foreorderConfirmed" class="orderAction" method="orderConfirmed">
+			<result name="orderConfirmed">/FountModule/orderFinish.jsp</result>
+		</action>
+		<action name="forepayed" class="orderAction" method="payed">
+			<result name="payed">/FountModule/payed.jsp</result>
+		</action>
+		<action name="forebought" class="orderAction" method="bought">
+			<result name="bought">/FountModule/order.jsp</result>
+			<interceptor-ref name="loginInterceptor"/>
+		</action>
+		<action name="forereview" class="review">
+			<result name="review">/FountModule/review.jsp</result>
+			<interceptor-ref name="loginInterceptor"/>
+		</action>
+		<action name="foredoreview" class="review" method="doreview">
+			<result name="forereview">/FountModule/review.jsp</result>
+			<interceptor-ref name="loginInterceptor"/>
+		</action>
+	</package>
+</struts>
