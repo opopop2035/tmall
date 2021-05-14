@@ -1,5 +1,7 @@
 package com.tmall.action.test;
 
+import com.opensymphony.xwork2.ActionSupport;
+import com.tmall.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,11 @@ import com.tmall.vo.UserRegisterInfo;
 @WebAppConfiguration
 @ContextConfiguration("/beans.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
-public class registerActionTest {
+public class registerActionTest extends ActionSupport{
+
+	@Autowired
+	private UserService userService;
+
 	@Autowired
 	private UserRegisterAction userRegisterAction;
 	private UserRegisterInfo registerInfo = new UserRegisterInfo();
@@ -27,4 +33,15 @@ public class registerActionTest {
 		String result = userRegisterAction.registerUser();
 		System.out.println(result);
 	}
+
+//	@Test
+//	@Override
+//	public void validate() {
+//		if (userService.userIsExist(registerInfo.getUsername())){
+//			this.addActionError("用户名已存在");
+//		}
+//		System.out.println("用户名可以使用");
+//		this.addActionMessage("用户名可以使用");
+////	}
+//}
 }

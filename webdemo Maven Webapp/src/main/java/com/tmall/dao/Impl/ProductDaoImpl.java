@@ -42,7 +42,12 @@ public class ProductDaoImpl implements ProductDao{
 	@Override
 	public List<Product> listByKeyword(String keyword,int start,int count){
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
-		return session.createQuery("from Product p where p.name like ?").setParameter(0,"%"+keyword+"%").setFirstResult(start).setMaxResults(count).getResultList();
+		return session.createQuery("from Product p where p.name like ?")/*模糊查询                  
+		 改进：可以对kayward进行分析，是否含有空格或其他字符，根据返回值进行不同操作 */
+				.setParameter(0,"%"+keyword+"%")
+				.setFirstResult(start)
+				.setMaxResults(count)
+				.getResultList();
 	}
 
 }

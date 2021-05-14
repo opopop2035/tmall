@@ -1,0 +1,8 @@
+马士兵spring45//over
+action层对SSH的应用//MVC层对JSP和后台的数据交互
+@Scope("prototype")了解//每个请求生成一个新的action
+做一个验证码
+WebSocket了解
+Spring 5新特性了解
+springMVC了解
+JAVA8特性修改

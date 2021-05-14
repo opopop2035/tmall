@@ -1,28 +1,16 @@
 package com.tmall.action;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
+import com.opensymphony.xwork2.ActionSupport;
+import com.tmall.model.*;
+import com.tmall.service.*;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.util.HtmlUtils;
 
-import com.opensymphony.xwork2.ActionSupport;
-import com.tmall.model.OrderItem;
-import com.tmall.model.Product;
-import com.tmall.model.ProductImage;
-import com.tmall.model.PropertyValue;
-import com.tmall.model.Review;
-import com.tmall.model.User;
-import com.tmall.service.OrderItemService;
-import com.tmall.service.ProductImageService;
-import com.tmall.service.ProductService;
-import com.tmall.service.PropertyValueService;
-import com.tmall.service.ReviewService;
-import com.tmall.service.UserService;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 @Controller("product")
 @Scope("prototype")
 public class ProductAction extends ActionSupport implements ServletRequestAware{

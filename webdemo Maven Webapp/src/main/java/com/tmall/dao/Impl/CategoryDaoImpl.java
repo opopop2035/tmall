@@ -1,14 +1,12 @@
 package com.tmall.dao.Impl;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-
+import com.tmall.dao.CategoryDao;
+import com.tmall.model.Category;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.tmall.dao.CategoryDao;
-import com.tmall.model.Category;
+import javax.annotation.Resource;
+import java.util.List;
 @Repository("categoryDao")
 public class CategoryDaoImpl implements CategoryDao{
 	@Resource

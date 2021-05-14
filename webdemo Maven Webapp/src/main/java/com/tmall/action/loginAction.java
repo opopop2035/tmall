@@ -1,16 +1,15 @@
 package com.tmall.action;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
+import com.opensymphony.xwork2.ActionSupport;
+import com.tmall.model.User;
+import com.tmall.service.UserService;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.util.HtmlUtils;
 
-import com.opensymphony.xwork2.ActionSupport;
-import com.tmall.model.User;
-import com.tmall.service.UserService;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller("login")
 @Scope("prototype")
@@ -23,23 +22,27 @@ public class loginAction  extends ActionSupport implements ServletRequestAware{
 	
 	@Override
 	public String execute() throws Exception {
-		String username = request.getParameter("userName");
+		String username = request.getParameter("userName");//从JSP获取用户名
 		username = HtmlUtils.htmlEscape(username);//转义防止恶意访问
-		String password = request.getParameter("password");
+		String password = request.getParameter("password");//从JSP获取密码
 		password = HtmlUtils.htmlEscape(password);
-		User user = userService.getUserByName(username);
-		if(!userService.userIsExist(username))
-		{
+
+		if (!userService.userIsExist(username)) {
 			System.out.println("用户名错了");
 			request.setAttribute("msg", "用户名或密码错误");
 			return "login";
-		}else if(user.getPassword() == password){
-			System.out.println("密码错了");
-			request.setAttribute("msg", "用户名或密码错误");
-			return "login";
 		}
-		request.getSession().setAttribute("user", user);
-		return SUCCESS;
+
+		User user = userService.getUserByName(username);//根据用户名获取正确密码
+
+		if (!user.getPassword().equals(password)) {
+				System.out.println("密码错了");
+				request.setAttribute("msg", "用户名或密码错误");
+				return "login";
+			}
+			request.getSession().setAttribute("user", user);
+			return SUCCESS;
+
 	}
 	
 	

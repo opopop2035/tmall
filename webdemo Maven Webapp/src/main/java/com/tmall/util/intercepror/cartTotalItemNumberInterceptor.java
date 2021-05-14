@@ -1,23 +1,19 @@
 package com.tmall.util.intercepror;
-import java.util.List;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.struts2.StrutsStatics;
-
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import com.tmall.model.OrderItem;
 import com.tmall.model.User;
 import com.tmall.service.OrderItemService;
+import org.apache.struts2.StrutsStatics;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 public class cartTotalItemNumberInterceptor extends AbstractInterceptor{
 	
 	@Resource
 	private OrderItemService orderItemService;
-	
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
 		

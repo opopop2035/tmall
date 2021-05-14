@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.tmall.model.User;
@@ -12,7 +13,7 @@ import com.tmall.service.UserService;
 
 @ContextConfiguration("/beans.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
-public class UserServiceTest {
+public class UserServiceTest extends AbstractTransactionalJUnit4SpringContextTests{
 	
 	@Autowired
 	private UserService userService;

@@ -1,19 +1,17 @@
 package com.tmall.action;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
-
 import com.opensymphony.xwork2.ActionSupport;
 import com.tmall.model.OrderItem;
 import com.tmall.service.OrderItemService;
 import com.tmall.service.ProductImageService;
+import org.apache.struts2.interceptor.ServletRequestAware;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller("buyAction")
 @Scope("prototype")
@@ -39,7 +37,7 @@ public class buyAction extends ActionSupport implements ServletRequestAware{
 			String[] oiids = request.getParameterValues("oiid");
 			for (String strid : oiids) {
 		        int oiid = Integer.parseInt(strid);
-		        OrderItem oi= orderItemService.listByOiid(oiid);
+		        OrderItem oi = orderItemService.listByOiid(oiid);
 		        total +=oi.getProduct().getBarginPrice()*oi.getNumber();
 		        productImageService.setFirstProductImage(oi.getProduct());
 		        ois.add(oi);

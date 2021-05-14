@@ -1,12 +1,11 @@
 package com.tmall.service.impl;
 
-import javax.annotation.Resource;
-
-import org.springframework.stereotype.Service;
-
 import com.tmall.dao.UserDao;
 import com.tmall.model.User;
 import com.tmall.service.UserService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 
 @Service("userService")
 public class UserServiceImpl implements UserService{
@@ -24,7 +23,6 @@ public class UserServiceImpl implements UserService{
 	}
 	@Override
 	public boolean userIsExist(String username) {
-		System.out.println("service");
 		return userDao.userIsExist(username);
 	}
 }

@@ -1,17 +1,17 @@
 package com.tmall.action;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.util.HtmlUtils;
-
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.tmall.model.User;
 import com.tmall.service.UserService;
 import com.tmall.vo.UserRegisterInfo;
+import org.apache.struts2.interceptor.ServletRequestAware;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.util.HtmlUtils;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller("userRegister")
 @Scope("prototype")
@@ -21,17 +21,17 @@ public class UserRegisterAction extends ActionSupport implements ModelDriven<Use
 	private UserService userService;
 	@Resource
 	private HttpServletRequest request;
-	private String state;
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	private UserRegisterInfo userInfo = new UserRegisterInfo();
+//	private String state;
+//
+//	public String getState() {
+//		return state;
+//	}
+//
+//	public void setState(String state) {
+//		this.state = state;
+//	}
+//
+	private UserRegisterInfo userInfo = new UserRegisterInfo();//用ModelDriven需要new一个
 
 	public UserRegisterInfo getUserInfo() {
 		return userInfo;
@@ -42,10 +42,10 @@ public class UserRegisterAction extends ActionSupport implements ModelDriven<Use
 	}
 
 	@Override
-	public String execute() {
-		return "userRegister.jsp";
+	public String execute() throws Exception{
+		return registerUser();
 	}
-	
+
 	public String registerUser(){
 		try {
 			User user = new User();
@@ -60,14 +60,22 @@ public class UserRegisterAction extends ActionSupport implements ModelDriven<Use
 			return ERROR;
 		}
 	}
-	public String getUserState() {
-		if (userService.getUserByName(userInfo.getUsername()) != null) {
-			state = "isExist";
-			return "exist";
-		}
-		state = "usable";
-		return "exist";
-	}
+//	public String getUserState() {
+//		if (userService.getUserByName(userInfo.getUsername()) != null) {
+//			state = "isExist";
+//			return "exist";
+//		}
+//		state = "usable";
+//		return "exist";
+//	}
+//	@Override
+//	public void validate() {//验证
+//		if (userService.userIsExist(userInfo.getUsername())){
+//			this.addActionError("用户名已存在");
+//		}
+//		this.addActionMessage("用户名可以使用");
+//	}
+
 
 	@Override
 	public UserRegisterInfo getModel() {

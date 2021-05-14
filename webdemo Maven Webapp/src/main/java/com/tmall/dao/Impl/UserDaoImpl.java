@@ -1,9 +1,12 @@
 package com.tmall.dao.Impl;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
+
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.hibernate.engine.query.spi.ReturnMetadata;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -46,11 +49,14 @@ public class UserDaoImpl implements UserDao {
 	}
 	@Override
 	public void deleteById(int id) {
-
 	}
 
 	@Override
-	public void modifyUser(User u) {
-
+	public boolean modifyUser(User u) {
+		if(!userIsExist(u.getUsername())) {
+			return false;
+		}
+		hibernateTemplate.update("update User u set u = ?", u);
+		return true;
 	}
 }

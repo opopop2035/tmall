@@ -35,7 +35,7 @@ public class OrderDaoImpl implements OrderDao{
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 		return session.createQuery("from Order o where o.user.id=? and o.status!=? order by id desc")
 		.setParameter(0, uid).setParameter(1, excludedStatus)
-		.setFirstResult(start).setMaxResults(count)
+		.setFirstResult(start).setMaxResults(count)//∑÷“≥≤È—Ø
 		.getResultList();
 	}
 }
